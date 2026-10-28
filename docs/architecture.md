@@ -108,3 +108,39 @@ The dashboard requires appropriate application-level access controls before publ
 ## 10. Future Architecture
 
 The intended direction is to replace local orchestration with Azure-native scheduling, secret management, centralized operational monitoring, and CI/CD.
+
+## 11. Platform Architecture Diagram
+
+```mermaid
+flowchart TD
+    A["Synthea Synthetic FHIR Data"]
+    B["Python Ingestion Pipeline"]
+    C["Azure Data Lake Storage Gen2"]
+    D["Snowflake BRONZE"]
+    E["dbt SILVER"]
+    F["dbt GOLD"]
+    G["Secure Snowflake Reporting Views"]
+    H["Next.js Analytics Dashboard"]
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G
+    G --> H
+
+    I["macOS LaunchAgent"] --> B
+
+    B --> J["SQLite Ingestion Audit"]
+    J --> K["Snowflake MONITORING"]
+    K --> H
+
+    J --> L["Failure and Recovery Registry"]
+    L --> M["Notification Outbox"]
+    M --> N["SMTP Email Dispatcher"]
+```
+
+**Operational note:** Daily scheduling is configured, but the
+calendar-triggered execution remains unverified. Unattended
+email delivery is not yet enabled.
