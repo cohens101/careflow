@@ -1,0 +1,53 @@
+# ==========================================
+# CAREFLOW — GIT IGNORE
+# ==========================================
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+!**/.env.example
+
+*.p8
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Python environments and caches
+.venv/
+.venv-*/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Next.js / Node
+node_modules/
+.next/
+.turbo/
+out/
+dist/
+coverage/
+*.tsbuildinfo
+
+# dbt generated files
+**/target/
+**/dbt_packages/
+**/logs/
+
+# Local datasets and monitoring state
+/data/
+*.sqlite3
+*.sqlite3-*
+*.db
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+
+# OS and editor artifacts
+.DS_Store
+Thumbs.db

@@ -1,0 +1,50 @@
+{{ config(materialized='table', schema='GOLD') }}
+
+WITH encounters AS (
+
+    SELECT
+        ENCOUNTER_ID,
+        PATIENT_ID,
+        ENCOUNTER_CLASS,
+        ENCOUNTER_START,
+        ENCOUNTER_END
+    FROM {{ ref('stg_encounters') }}
+
+),
+
+monthly AS (
+
+    SELECT
+        DATE_TRUNC('MONTH', ENCOUNTER_START)::DATE
+            AS MONTH_START,
+
+        COALESCE(ENCOUNTER_CLASS, 'UNKNOWN')
+            AS ENCOUNTER_CLASS,
+
+        COUNT(*) AS TOTAL_ENCOUNTERS,
+
+        COUNT(DISTINCT PATIENT_ID) AS UNIQUE_PATIENTS,
+
+        COUNT_IF(
+            ENCOUNTER_END < ENCOUNTER_START
+        ) AS INVALID_DATE_RANGES
+
+    FROM encounters
+    WHERE ENCOUNTER_START IS NOT NULL
+
+    GROUP BY 1, 2
+
+)
+
+SELECT
+    TO_VARCHAR(MONTH_START, 'YYYY-MM')
+        || '|' || ENCOUNTER_CLASS
+        AS MONTH_CLASS_KEY,
+
+    MONTH_START,
+    ENCOUNTER_CLASS,
+    TOTAL_ENCOUNTERS,
+    UNIQUE_PATIENTS,
+    INVALID_DATE_RANGES
+
+FROM monthly

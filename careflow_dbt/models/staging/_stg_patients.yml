@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: stg_patients
+    description: Cleaned synthetic FHIR patient records.
+
+    columns:
+      - name: PATIENT_ID
+        description: Unique FHIR patient identifier.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: BIRTH_DATE
+        description: Parsed patient birth date.

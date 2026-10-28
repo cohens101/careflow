@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: bronze
+    database: CAREFLOW
+    schema: BRONZE
+    description: Raw synthetic FHIR data loaded from Azure.
+
+    tables:
+      - name: PATIENT_RAW
+      - name: ENCOUNTER_RAW
+      - name: CONDITION_RAW

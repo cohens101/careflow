@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: fct_patient_utilization
+    description: Patient-level healthcare utilization metrics.
+
+    columns:
+      - name: PATIENT_ID
+        data_tests:
+          - unique
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_patients')
+                field: PATIENT_ID
+
+      - name: TOTAL_ENCOUNTERS
+        data_tests:
+          - not_null

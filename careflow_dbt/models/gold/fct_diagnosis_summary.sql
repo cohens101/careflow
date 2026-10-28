@@ -1,0 +1,45 @@
+{{ config(materialized='table', schema='GOLD') }}
+
+WITH conditions AS (
+
+    SELECT
+        COALESCE(NULLIF(CODE_SYSTEM, ''), 'UNKNOWN')
+            AS CODE_SYSTEM,
+
+        COALESCE(NULLIF(DIAGNOSIS_CODE, ''), 'UNKNOWN')
+            AS DIAGNOSIS_CODE,
+
+        COALESCE(
+            NULLIF(DIAGNOSIS_DESCRIPTION, ''),
+            'Unspecified'
+        ) AS DIAGNOSIS_DESCRIPTION,
+
+        PATIENT_ID,
+        ENCOUNTER_ID,
+        CLINICAL_STATUS
+
+    FROM {{ ref('stg_conditions') }}
+
+)
+
+SELECT
+    CODE_SYSTEM,
+    DIAGNOSIS_CODE,
+    DIAGNOSIS_DESCRIPTION,
+
+    COUNT(*) AS CONDITION_RECORDS,
+
+    COUNT(DISTINCT PATIENT_ID) AS UNIQUE_PATIENTS,
+
+    COUNT(DISTINCT ENCOUNTER_ID) AS LINKED_ENCOUNTERS,
+
+    SUM(
+        IFF(CLINICAL_STATUS = 'active', 1, 0)
+    ) AS ACTIVE_CONDITION_RECORDS
+
+FROM conditions
+
+GROUP BY
+    CODE_SYSTEM,
+    DIAGNOSIS_CODE,
+    DIAGNOSIS_DESCRIPTION

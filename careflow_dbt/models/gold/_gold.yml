@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: fct_encounter_monthly
+    description: Monthly synthetic healthcare utilization.
+
+    columns:
+      - name: MONTH_CLASS_KEY
+        data_tests:
+          - not_null
+          - unique
+
+      - name: MONTH_START
+        data_tests:
+          - not_null
+
+      - name: TOTAL_ENCOUNTERS
+        data_tests:
+          - not_null

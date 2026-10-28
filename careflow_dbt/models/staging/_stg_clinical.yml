@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: stg_encounters
+    description: Structured synthetic patient encounters.
+    columns:
+      - name: ENCOUNTER_ID
+        data_tests:
+          - not_null
+          - unique
+
+      - name: PATIENT_ID
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_patients')
+                field: PATIENT_ID
+
+  - name: stg_conditions
+    description: Structured synthetic clinical conditions.
+    columns:
+      - name: CONDITION_ID
+        data_tests:
+          - not_null
+          - unique
+
+      - name: PATIENT_ID
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_patients')
+                field: PATIENT_ID
+
+      - name: ENCOUNTER_ID
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('stg_encounters')
+                field: ENCOUNTER_ID
