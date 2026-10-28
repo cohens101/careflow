@@ -23,7 +23,7 @@ The original development environment uses separate Python virtual environments f
 
 ## 2. Clone the Repository
 
-    git clone <REPOSITORY_URL>
+    git clone https://github.com/cohens101/careflow.git
     cd careflow
 
 Replace the URL with the published GitHub repository address.
@@ -111,6 +111,8 @@ Install dependencies from the lockfile:
     npm ci
 
 Create a local .env.local configuration.
+
+For private dashboard access, configure `CAREFLOW_ACCESS_USER` and `CAREFLOW_ACCESS_PASSWORD`. Keep these values out of version control. HTTP Basic Authentication requires HTTPS when hosted beyond localhost.
 
 The application references SNOWFLAKE_ACCOUNT and SNOWFLAKE_PRIVATE_KEY_PATH.
 

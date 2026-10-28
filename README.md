@@ -25,6 +25,7 @@ The platform processes synthetic FHIR healthcare records through Azure Data Lake
 
 ## Architecture
 
+```text
 Synthea (Synthetic FHIR Data)
         |
         v
@@ -44,6 +45,7 @@ Secure Snowflake Reporting Views
         |
         v
 Next.js Analytics Dashboard
+```
 
 Operational monitoring runs alongside ingestion through SQLite audit records, Snowflake monitoring tables, alert detection, and email notifications.
 
@@ -116,6 +118,7 @@ No real patient records are required for this project.
 
 ## Repository Structure
 
+```text
 careflow/
 ├── careflow-web/       # Next.js dashboard and API routes
 ├── careflow_dbt/       # Snowflake dbt transformations
@@ -124,6 +127,7 @@ careflow/
 ├── tests/              # Automated tests
 ├── data/               # Local datasets and monitoring state (Git-ignored)
 └── README.md
+```
 
 ## Operational Status
 
