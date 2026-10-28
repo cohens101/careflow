@@ -8,19 +8,20 @@ The platform processes synthetic FHIR healthcare records through Azure Data Lake
 
 ## Dashboard Preview
 
-CareFlow provides healthcare analytics and operational visibility through a Snowflake-connected dashboard.
-
 ### Healthcare Analytics
+![Healthcare Analytics](docs/screenshots/dashboard-overview.png)
 
-![CareFlow healthcare analytics overview](docs/screenshots/dashboard-overview.png)
+### Data Quality & Reconciliation
+![Data Quality Monitor](docs/screenshots/dashboard-quality.png)
 
 ### Pipeline Monitoring
+![Pipeline Monitoring](docs/screenshots/dashboard-monitoring.png)
 
-![CareFlow pipeline execution and monitoring](docs/screenshots/dashboard-monitoring.png)
+### Pipeline Freshness
+![Pipeline Freshness](docs/screenshots/dashboard-freshness.png)
 
-### Data Quality & Freshness
-
-![CareFlow data quality and freshness monitoring](docs/screenshots/dashboard-quality.png)
+### Pipeline Health
+![Pipeline Health](docs/screenshots/dashboard-health.png)
 
 ## Architecture
 
