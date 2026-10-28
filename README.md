@@ -6,6 +6,22 @@ CareFlow is an end-to-end healthcare data engineering project that demonstrates 
 
 The platform processes synthetic FHIR healthcare records through Azure Data Lake Storage Gen2, Snowflake, and dbt, then presents analytical insights and pipeline health through a Next.js dashboard.
 
+## Dashboard Preview
+
+CareFlow provides healthcare analytics and operational visibility through a Snowflake-connected dashboard.
+
+### Healthcare Analytics
+
+![CareFlow healthcare analytics overview](docs/screenshots/dashboard-overview.png)
+
+### Pipeline Monitoring
+
+![CareFlow pipeline execution and monitoring](docs/screenshots/dashboard-monitoring.png)
+
+### Data Quality & Freshness
+
+![CareFlow data quality and freshness monitoring](docs/screenshots/dashboard-quality.png)
+
 ## Architecture
 
 Synthea (Synthetic FHIR Data)
