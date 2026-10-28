@@ -49,6 +49,12 @@ Operational monitoring runs alongside ingestion through SQLite audit records, Sn
 
 See [Architecture Documentation](docs/architecture.md).
 
+## Getting Started
+
+For environment preparation, dependency installation, cloud configuration, and local testing, see the [CareFlow Setup Guide](docs/setup.md).
+
+The repository does not yet automate provisioning of all required Azure and Snowflake resources.
+
 ## Technology Stack
 
 | Layer | Technologies |
